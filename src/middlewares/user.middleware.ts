@@ -38,3 +38,12 @@ export const verifyNewUser = (req: Request, res: Response, next: NextFunction) =
 
     next();
 };
+
+export const verifyExtended = (req: Request, res: Response, next: NextFunction) => {
+    if (typeof req.params.extended !== "undefined")
+        if (req.params.extended !== "extended")
+            return res.status(400).json({ msg: "Invalid URL" });
+
+        next();
+
+};

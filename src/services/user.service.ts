@@ -1,7 +1,8 @@
-import { db_allUsers } from '../repositories/user.repository';
+import { db_allUsers, db_getUserById } from '../repositories/user.repository';
 import { INewUser } from './../interfaces/INewUser.interface';
 import { db_educationDataById } from './../repositories/education.repository';
 import { db_workExperienceDataById } from './../repositories/workExperience.repository';
+import { IUserData } from './../interfaces/IUserData.interface';
 
 export const serv_getAllUsersData = async () => {
     try {
@@ -25,3 +26,13 @@ export const serv_getAllUsersData = async () => {
         console.log(e);
     }
 };
+
+export const serv_getUserData = async (id: string, extended: boolean = false): Promise<IUserData> => {
+    const foundUser = await db_getUserById(id);
+    const userEducation = extended ? await db_educationDataById(foundUser._id): undefined;
+    const userWorkExperience = extended ? await db_workExperienceDataById(foundUser._id): undefined;
+
+    const wrappedUserData: IUserData = extended ? { user: foundUser, education: userEducation, work: userWorkExperience }: {user: foundUser};
+
+    return wrappedUserData
+}

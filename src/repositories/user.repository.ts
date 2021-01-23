@@ -13,3 +13,9 @@ export const db_allUsers = async (): Promise<[IUser]> => {
 
     return allUsers
 };
+
+export const db_getUserById = async (id: string): Promise<IUser> => {
+    const foundUser = await User.findById(id);
+
+    return foundUser;
+};
