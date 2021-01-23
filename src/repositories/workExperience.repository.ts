@@ -1,11 +1,9 @@
+// ** Work Experience Repository: methods that call the database **
+
 import Work, { IWorkExperience } from './../models/work_experience.model';
 
-export const db_workExperienceDataById = async (userID: string): Promise<[IWorkExperience]> => {
-    const userWorkExperience = await Work.find({ userID: userID });
-    return userWorkExperience;
-}
-
-export const db_addWorkExperience = async (newWorkExperience: IWorkExperience, userID: string) => {
+// Creates a new work experience document
+export const db_addWorkExperience = async (newWorkExperience: IWorkExperience, userID: string): Promise<IWorkExperience> => {
     const addedWorkExperience = new Work(newWorkExperience);
     addedWorkExperience.userID = userID;
 
@@ -14,20 +12,23 @@ export const db_addWorkExperience = async (newWorkExperience: IWorkExperience, u
     return addedWorkExperience;
 }
 
-export const db_deleteWorkExperience = async (workExperienceID: string) => {
+// Deletes a work experience document
+export const db_deleteWorkExperience = async (workExperienceID: string): Promise<boolean> => {
     const isDeleted = await Work.deleteOne({ _id: workExperienceID })
 
     return isDeleted.n;
 }
 
-export const db_updateWorkExperience = async (workExperience: IWorkExperience) => {
-    const newWorkExp = await Work.findByIdAndUpdate({_id: workExperience._id}, workExperience, {new: true});
+// Updates a work experience document
+export const db_updateWorkExperience = async (workExperience: IWorkExperience): Promise<IWorkExperience> => {
+    const newWorkExp: IWorkExperience = await Work.findByIdAndUpdate({_id: workExperience._id}, workExperience, {new: true});
 
     return newWorkExp;
 }
 
-export const db_getWorkExperience = async (userID: string) => {
-    const workExperienceUser = await Work.find({userID: userID});
+// Returns work experience from an user
+export const db_getWorkExperience = async (userID: string): Promise<IWorkExperience[]> => {
+    const workExperienceUser: IWorkExperience[] = await Work.find({userID: userID});
 
     return workExperienceUser;
 }

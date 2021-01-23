@@ -4,7 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 
-import userRoutes from "../routes/api/user.routes";
+import apiRoutes from "../routes/api/api.routes";
 
 // Initializations
 const app = express();
@@ -19,6 +19,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // Routes
-app.use("/api", userRoutes)
+app.use("/api", apiRoutes)
 
 export default app;

@@ -1,3 +1,5 @@
+// ** Education Model **
+
 import { model, Schema, Document } from 'mongoose';
 
 export interface IEducation extends Document {

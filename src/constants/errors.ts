@@ -11,3 +11,4 @@ export const REQUIRED_DATA_MISSING = "Required data missing or invalid.";
 export const DATABASE_ERROR = "Error with database connection.";
 
 export const DATA_MISSING= "Required data missing.";
+export const ID_ERROR= "Required data missing.";

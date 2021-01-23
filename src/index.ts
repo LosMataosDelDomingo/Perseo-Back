@@ -1,3 +1,5 @@
+// ** Init file **
+
 import app from './config/app';
 import "./config/database";
 
