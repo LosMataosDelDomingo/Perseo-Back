@@ -1,6 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
 export interface IWorkExperience extends Document {
+    userID: string,
     dateStart: number,
     dateEnd: number,
     position: string,
@@ -13,6 +14,9 @@ export interface IWorkExperience extends Document {
 };
 
 export const workExperienceSchema = new Schema({
+    userID: {
+        type: String
+    },
     dateStart: {
         type: Number,
     },

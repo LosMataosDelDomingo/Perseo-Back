@@ -1,6 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
 export interface IEducation extends Document {
+    userID: string,
     dateStart: Number,
     dateEnd: Number,
     title: string,
@@ -11,6 +12,9 @@ export interface IEducation extends Document {
 };
 
 export const educationSchema = new Schema({
+    userID: {
+        type: String
+    },
     dateStart: {
         type: Number,
     },
