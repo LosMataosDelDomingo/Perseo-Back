@@ -4,12 +4,13 @@
   "description": "![banner](/Assets/banner.jpeg)",
   "main": "index.js",
   "engines": {
-    "node": "12.x"
+    "node": "12.13.1"
   },
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "build": "tsc",
-    "start": "tsc & node dist/index.js",
+    "start": "node dist/index.js",
+    "postinstall": "tsc",
     "test": "jest"
   },
   "repository": {
