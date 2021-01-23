@@ -7,6 +7,9 @@ import { IUser } from './../models/user.model';
 import { INewUser } from './../interfaces/INewUser.interface';
 import { db_getUserById, db_newUser } from './../repositories/user.repository';
 import { serv_getAllUsersData, serv_getUserData } from "../services/user.service";
+import { db_addWorkExperience } from "../repositories/workExperience.repository";
+import { IWorkExperience } from './../models/work_experience.model';
+import { IUserWorkExperience } from './../interfaces/IUserWorkExperience.interface';
 
 
 export const getAllUsers = async (req: Request, res: Response) => {
@@ -49,10 +52,21 @@ export const createNewUser = async (req: Request, res: Response): Promise<Respon
 export const getUserById = async (req: Request, res: Response): Promise<Response> => {
     try {
 
-        const foundUser = (req.params.extended) ? await serv_getUserData(req.params.idUser, true): await serv_getUserData(req.params.idUser);
+        const foundUser = (req.params.extended) ? await serv_getUserData(req.params.idUser, true) : await serv_getUserData(req.params.idUser);
 
         return res.status(200).json({ user: foundUser });
     } catch (e) {
         return res.status(400).json({ msg: e.message });
     }
 }
+
+export const addWorkExperience = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { workExperience, userID }: IUserWorkExperience = req.body;
+        const addedWorkExperience = await db_addWorkExperience(workExperience, userID);
+
+        return res.status(200).json({ msg: "Work experience added" });
+    } catch (e) {
+        return res.status(400).json({ msg: e.message });
+    }
+};
