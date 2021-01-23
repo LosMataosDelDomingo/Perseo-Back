@@ -19,15 +19,19 @@ export const workExperienceSchema = new Schema({
     },
     dateStart: {
         type: Number,
+        required: true
     },
     dateEnd: {
-        type: Number
+        type: Number,
+        required: true
     },
     position: {
-        type: String
+        type: String,
+        required: true
     },
     company: {
-        type: String
+        type: String,
+        required: true
     },
     workday: {
         type: String
@@ -36,7 +40,8 @@ export const workExperienceSchema = new Schema({
         type: String
     },
     isWorking: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
     description: {
         type: String

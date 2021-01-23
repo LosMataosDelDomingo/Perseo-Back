@@ -1,4 +1,4 @@
-import User, {IUser} from '../models/user.model';
+import User, { IUser } from '../models/user.model';
 
 export const db_newUser = async (user: IUser) => {
 
@@ -19,3 +19,27 @@ export const db_getUserById = async (id: string): Promise<IUser> => {
 
     return foundUser;
 };
+
+export const db_updateUser = async (newUser: IUser) => {
+    const updatedUser = User.findByIdAndUpdate({ _id: newUser._id }, newUser, { new: true });
+
+    return updatedUser;
+};
+
+//Change to not visible(PENDING)
+export const db_deleteUser = async (userID: string) => {
+    const isDeleted = await User.deleteOne({ _id: userID});
+    
+    return isDeleted.n
+}
+
+
+export const db_userExists = async (userID: string) => {
+    await User.countDocuments({ _id: userID }, function (err, count) {
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+}
