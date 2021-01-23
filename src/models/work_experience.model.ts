@@ -4,7 +4,7 @@ export interface IWorkExperience extends Document {
     dateStart: number,
     dateEnd: number,
     position: string,
-    companie: string,
+    company: string,
     workday: string,
     location: string,
     isWorking: boolean,
@@ -22,7 +22,7 @@ export const workExperienceSchema = new Schema({
     position: {
         type: String
     },
-    companie: {
+    company: {
         type: String
     },
     workday: {
