@@ -1,3 +1,5 @@
+// ** Enviroment variables **
+
 export default {
     jwtSecret: process.env.JWT_SECRET || "randomtoken",
     DB: {

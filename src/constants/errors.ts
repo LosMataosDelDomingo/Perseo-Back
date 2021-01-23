@@ -1,3 +1,4 @@
+// ** Error logs **
 
 export const SIGNUP_DATA_MISSING = "Required data missing.";
 export const SIGNUP_DATA_ERROR = "Required data not valid.";
