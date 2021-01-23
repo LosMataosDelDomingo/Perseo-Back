@@ -9,13 +9,34 @@ const emailValidator = (email: string): boolean => {
 };
 
 export const verifyNewUser = (req: Request, res: Response, next: NextFunction) => {
-    const { user, education, work }: INewUser = req.body;
+    try {
 
-    const { name, surname, email, phone, birthAge, address, summary } = user;
+        const { user, education, work }: INewUser = req.body;
+        const { name, surname, email, phone, birthAge, address, summary } = user;
 
 
-    if (typeof name == 'undefined' || typeof surname == 'undefined' || typeof email == 'undefined' || typeof phone == 'undefined' || typeof birthAge == 'undefined' || typeof address == 'undefined' || typeof summary == 'undefined')
-        return res.status(400).json({ msg: DATA_MISSING });
+        if (typeof name == 'undefined' || typeof surname == 'undefined' || typeof email == 'undefined' || typeof phone == 'undefined')
+            return res.status(400).json({ msg: DATA_MISSING });
+
+
+        education.forEach(educationData => {
+            const { dateStart, dateEnd, educationCenter, discipline } = educationData
+            if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof educationCenter == 'undefined' || typeof discipline == 'undefined')
+                throw new Error(DATA_MISSING);
+
+        });
+
+
+        work.forEach(workData => {
+            const { dateStart, dateEnd, position, company, isWorking } = workData;
+            if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof position == 'undefined' || typeof company == 'undefined' || typeof isWorking == 'undefined')
+                throw new Error(DATA_MISSING);
+        });
+
+    } catch (e) {
+        return res.status(400).json({ msg: e.message });
+    }
+
 
     // if (!(email.trim() && emailValidator(email) && password.trim() && telf.trim()))
     //     return res.status(400).json({ msg: err.SIGNUP_DATA_ERROR });
