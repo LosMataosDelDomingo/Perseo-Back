@@ -31,7 +31,7 @@ export const createNewUser = async (req: Request, res: Response): Promise<Respon
         const { status, msg } = await serv_createUser(user, education, work);
 
 
-        return res.status(status).json(msg);
+        return res.status(status).json({msg: msg});
     } catch (e) {
         return res.status(400).json({ msg: e.message });
     }
