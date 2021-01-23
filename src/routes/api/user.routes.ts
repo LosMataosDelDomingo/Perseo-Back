@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addWorkExperience, createNewUser, getAllUsers, getUserById, deleteWorkExperience, updateWorkExperience, getWorkExperience, updateUser, deleteUser } from './../../controllers/user.controller';
+import { addWorkExperience, createNewUser, getAllUsers, getUserById, deleteWorkExperience, updateWorkExperience, getWorkExperience, updateUser, deleteUser, getEducation, updateEducation, addEducation, deleteEducation } from './../../controllers/user.controller';
 import { verifyExtended, verifyNewUser } from './../../middlewares/user.middleware';
 import { verifyNewWork } from './../../middlewares/workExperience.middleware';
 
@@ -18,5 +18,9 @@ router.post("/work", verifyNewWork, addWorkExperience);
 router.delete("/work", deleteWorkExperience);
 router.patch("/work", updateWorkExperience);
 
+router.get("/education/:userID", getEducation)
+router.delete("/education/", deleteEducation)
+router.patch("/education", updateEducation)
+router.post("/education", addEducation)
 
 export default router;

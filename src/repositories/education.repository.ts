@@ -6,9 +6,8 @@ export const db_educationDataById = async (userID: string): Promise<[IEducation]
     return userEducation;
 }
 
-export const db_addEducation = async(newEducation: IEducation, userID: string) => {
+export const db_addEducation = async(newEducation: IEducation) => {
     const addedEducation = new Education(newEducation);
-    addedEducation.userID = userID;
 
     await addedEducation.save()
 
@@ -16,9 +15,9 @@ export const db_addEducation = async(newEducation: IEducation, userID: string) =
 }
 
 export const db_deleteEducation = async (educationID: string) => {
-    await Education.deleteOne({_id: educationID});
+    const isDeleted = await Education.deleteOne({_id: educationID});
 
-    return true
+    return isDeleted.n
 }
 
 export const db_updateEducation = async (newEducation: IEducation) => {
