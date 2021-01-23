@@ -13,3 +13,9 @@ export const db_addWorkExperience = async (newWorkExperience: IWorkExperience, u
 
     return addedWorkExperience;
 }
+
+export const db_deleteWorkExperience = async (workExperienceID: string) => {
+    const isDeleted: boolean = await Work.deleteOne({ _id: workExperienceID })
+
+    return isDeleted;
+}

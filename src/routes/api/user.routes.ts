@@ -8,6 +8,7 @@ const router = Router();
 router.get("/users", getAllUsers)
 router.get("/users/:idUser/:extended?", verifyExtended, getUserById)
 router.post("/users", verifyNewUser, createNewUser);
+
 router.post("/workexperience", addWorkExperience);
 
 export default router;
