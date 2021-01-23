@@ -1,8 +1,11 @@
+// ** Server Configuration file **
+
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 
 import userRoutes from "../routes/api/user.routes";
+
 // Initializations
 const app = express();
 
