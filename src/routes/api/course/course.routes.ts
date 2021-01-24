@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { getCourses, getCourseById, createCourse, editCourse, deleteCourse } from '../../../controllers/course.controller';
+import { verifyIfAdmin } from '../../../middlewares/auth.middleware';
 //import controller methods
 
 const router = Router();
@@ -7,9 +8,9 @@ const router = Router();
 router.get("/getCourses", getCourses);
 router.get("/getCourse/:id", getCourseById);
 
-router.post("/createCourse", createCourse);
+router.post("/createCourse", verifyIfAdmin, createCourse);
 
-router.patch("/editCourse/:id", editCourse);
-router.patch("/delete/:id", deleteCourse);
+router.patch("/editCourse/:id", verifyIfAdmin, editCourse);
+router.patch("/delete/:id", verifyIfAdmin, deleteCourse);
 
 export default router

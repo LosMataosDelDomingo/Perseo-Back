@@ -6,7 +6,12 @@ ENDPOINTS:
 # /api/course/getCourses
 # /api/course/getCourse/:id
 
-# /api/course/createCourse 
+# /api/course/createCourse (protegida)
+
+Headers: 
+{
+    Authorization: Bearer (token generado por el login)
+}
 
 {
     "newCourse": {
@@ -18,7 +23,7 @@ ENDPOINTS:
 }
 
 
-# /api/course/editCourse/:id
+# /api/course/editCourse/:id (protegida)
 {
     "actualCourse": {
         "name": "Flutter course edited test",
@@ -28,10 +33,12 @@ ENDPOINTS:
     }
 }
 
-# /api/course/delete/:id
+# /api/course/delete/:id (protegida)
 
 # /api/users/getUserByEmail
 {
     "email": "erix12@gmail.com"
 }
+
+
 

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import config from "../constants/env";
 import { IUserToken } from "../interfaces/IUserToken.interface";
+import { db_getUserById } from "../repositories/user.repository";
 import { IUser } from './../models/user.model';
 
 
@@ -21,4 +22,19 @@ export const getIdFromPayload = (token: string) => {
     const payload =<IPayload> jwt.verify(tokenWithoutBearer, config.JWT_SECRET);
 
     return payload.id;
+};
+
+export const checkAdmin  = async (token: string) => {
+    if (token !== undefined){
+        console.log('dentro')
+        const tokenWithoutBearer = token.split(" ")[1];
+        const payload =<IPayload> jwt.verify(tokenWithoutBearer, config.JWT_SECRET);
+        const userData = await db_getUserById(payload.id);
+        console.log(userData);
+        if(userData.admin === true){
+            return true;
+        }
+        return false;
+    }
+    return false;
 };
