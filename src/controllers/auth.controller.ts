@@ -87,7 +87,7 @@ export const changePassword = async (req: Request, res: Response): Promise<Respo
 
 export const changeProfile = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const { phone, email }: IUser = req.body;
+        const { phone, email, name, surname, birthAge }: IProfile = req.body;
 
         // Get id from jwt token
         const id: string = getIdFromPayload(<string>req.headers.authorization);
@@ -99,7 +99,7 @@ export const changeProfile = async (req: Request, res: Response): Promise<Respon
         if (!userFound)
             throw new Error(REQUIRED_DATA_MISSING);
 
-        const updatedUser: IUser = await updateProfile(userFound, { phone: phone, email: email });
+        const updatedUser: IUser = await updateProfile(userFound, { phone: phone, email: email, name: name, surname: surname, birthAge: birthAge });
         if (!updatedUser)
             throw new Error(DATABASE_ERROR);
 

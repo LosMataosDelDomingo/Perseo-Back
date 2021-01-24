@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { DATA_MISSING } from "../constants/errors";
+import { DATA_MISSING, REQUIRED_DATA_MISSING } from "../constants/errors";
 import { INewUser } from './../interfaces/INewUser.interface';
+import IUpdatePassword from './../interfaces/IUpdatePassword.interface';
 
 const emailValidator = (email: string): boolean => {
     const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -46,4 +47,16 @@ export const verifyExtended = (req: Request, res: Response, next: NextFunction) 
 
         next();
 
+};
+
+
+export const checkPasswordChangeRequest = (req: Request, res: Response, next: NextFunction) => {
+    
+    const {oldPwd, newPwd}: IUpdatePassword = req.body;
+
+    if (!oldPwd.trim() || !newPwd.trim())
+        return res.status(400).json({msg: REQUIRED_DATA_MISSING });
+
+    next();
+    
 };

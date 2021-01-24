@@ -8,6 +8,7 @@ import passportMiddleware from "../config/passport"
 
 import apiRoutes from "../routes/api/api.routes";
 import authRoutes from "../routes/api/auth/auth.routes";
+import protectedRoutes from "../routes/api/admin/admin.routes"
 
 // Initializations
 const app = express();
@@ -26,5 +27,6 @@ passport.use(passportMiddleware);
 // Routes
 app.use("/api", apiRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/api/admin", protectedRoutes)
 
 export default app;

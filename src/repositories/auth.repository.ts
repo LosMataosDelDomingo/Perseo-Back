@@ -21,24 +21,25 @@ export const checkPassword = async (userFound: IUser , password: string): Promis
 export const getUserById = async (id: string): Promise<IUser> => {
 
     const userFound = <IUser>await User.findById(id);
-
+    
     return userFound;
 };
 
 export const updatePassword = async (userFound: IUser, newPwd: string) => {
-
+    
     userFound.password = newPwd;
-
+    
     await userFound.save();
-
+    
     return userFound;
 };
 
 export const updateProfile = async (userFound: IUser, updatedData: IProfile) => {
-
-    const updatedUser: IUser = Object.assign(userFound, updatedData);
-
-    await updatedUser.save();
+    
+    const updatedUser: IUser = User.findOneAndUpdate({_id: userFound._id}, updatedData);
+    // console.log(updatedUser.);
+    
+    // await updatedUser.save();
 
     return updatedUser;
 };

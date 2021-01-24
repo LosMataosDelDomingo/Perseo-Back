@@ -58,7 +58,6 @@ export const userSchema = new Schema({
     password: {
         type: String,
         minlength: 7,
-        maxlength: 20,
         trim: true,
         required: true // Add to middleware
     }

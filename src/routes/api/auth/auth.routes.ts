@@ -1,5 +1,4 @@
-import { Router, Request, Response } from 'express';
-import passport from 'passport';
+import { Router} from 'express';
 import { signUp, signIn } from './../../../controllers/auth.controller';
 
 const router = Router();
