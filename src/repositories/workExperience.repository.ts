@@ -27,8 +27,8 @@ export const db_updateWorkExperience = async (workExperience: IWorkExperience): 
 }
 
 // Returns work experience from an user
-export const db_getWorkExperience = async (userID: string): Promise<IWorkExperience[]> => {
-    const workExperienceUser: IWorkExperience[] = await Work.find({userID: userID});
+export const db_getWorkExperience = async (userID: string): Promise<[IWorkExperience]> => {
+    const workExperienceUser: [IWorkExperience] = await Work.find({userID: userID});
 
     return workExperienceUser;
 }
