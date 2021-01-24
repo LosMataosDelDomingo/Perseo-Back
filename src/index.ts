@@ -1,6 +1,6 @@
 // ** Init file **
-//  import dotenv from "dotenv"
-//  dotenv.config()
+ import dotenv from "dotenv"
+ dotenv.config()
 import app from './config/app';
 import "./config/database";
 

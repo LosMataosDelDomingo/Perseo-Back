@@ -4,6 +4,6 @@ import { IUser } from './../models/user.model';
 
 export interface INewUser {
     user: IUser
-    education: [IEducation],
-    work: [IWorkExperience]
+    education?: [IEducation],
+    work?: [IWorkExperience]
 }
