@@ -3,10 +3,10 @@ Postman - https://www.postman.com/collections/005b7597975f30073791
 
 ENDPOINTS: 
 
-/api/course/getCourses
-/api/course/getCourse/:id
+# /api/course/getCourses
+# /api/course/getCourse/:id
 
-/api/course/createCourse 
+# /api/course/createCourse 
 
 {
     "newCourse": {
@@ -18,7 +18,7 @@ ENDPOINTS:
 }
 
 
-/api/course/editCourse/:id
+# /api/course/editCourse/:id
 {
     "actualCourse": {
         "name": "Flutter course edited test",
@@ -28,5 +28,5 @@ ENDPOINTS:
     }
 }
 
-/api/course/delete/:id
+# /api/course/delete/:id
 
