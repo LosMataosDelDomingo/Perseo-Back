@@ -19,19 +19,21 @@ export const verifyNewUser = (req: Request, res: Response, next: NextFunction) =
         if (typeof name == 'undefined' || typeof surname == 'undefined' || typeof email == 'undefined' || typeof phone == 'undefined' || typeof birthAge == 'undefined')
             return res.status(400).json({ msg: DATA_MISSING });
 
+        if (typeof education !== "undefined") {
+            education.forEach(educationData => {
+                const { dateStart, dateEnd, title, educationCenter, discipline } = educationData
+                if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof title == 'undefined' || typeof educationCenter == 'undefined' || typeof discipline == 'undefined')
+                    throw new Error(DATA_MISSING);
+            });
+        }
 
-        education.forEach(educationData => {
-            const { dateStart, dateEnd, title, educationCenter, discipline } = educationData
-            if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof title == 'undefined' || typeof educationCenter == 'undefined' || typeof discipline == 'undefined')
-                throw new Error(DATA_MISSING);
-        });
-
-
-        work.forEach(workData => {
-            const { dateStart, dateEnd, position, company, isWorking } = workData;
-            if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof position == 'undefined' || typeof company == 'undefined' || typeof isWorking == 'undefined')
-                throw new Error(DATA_MISSING);
-        });
+        if (typeof work !== "undefined") {
+            work.forEach(workData => {
+                const { dateStart, dateEnd, position, company, isWorking } = workData;
+                if (typeof dateStart == 'undefined' || typeof dateEnd == 'undefined' || typeof position == 'undefined' || typeof company == 'undefined' || typeof isWorking == 'undefined')
+                    throw new Error(DATA_MISSING);
+            });
+        }
 
     } catch (e) {
         return res.status(400).json({ msg: e.message });
@@ -45,18 +47,18 @@ export const verifyExtended = (req: Request, res: Response, next: NextFunction) 
         if (req.params.extended !== "extended")
             return res.status(400).json({ msg: "Invalid URL" });
 
-        next();
+    next();
 
 };
 
 
 export const checkPasswordChangeRequest = (req: Request, res: Response, next: NextFunction) => {
-    
-    const {oldPwd, newPwd}: IUpdatePassword = req.body;
+
+    const { oldPwd, newPwd }: IUpdatePassword = req.body;
 
     if (!oldPwd.trim() || !newPwd.trim())
-        return res.status(400).json({msg: REQUIRED_DATA_MISSING });
+        return res.status(400).json({ msg: REQUIRED_DATA_MISSING });
 
     next();
-    
+
 };

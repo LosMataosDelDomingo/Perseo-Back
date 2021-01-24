@@ -25,7 +25,7 @@ export const createNewUser = async (req: Request, res: Response): Promise<Respon
     try {
         const { user, education, work }: INewUser = req.body;
 
-        const { status, msg } = await serv_createUser(user, education, work);
+        const { status, msg } = await serv_createUser(user);
 
         return res.status(status).json({ result: msg });
 

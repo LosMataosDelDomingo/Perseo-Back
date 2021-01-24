@@ -51,21 +51,21 @@ export const serv_getUserData = async (id: string, extended: boolean = false): P
 }
 
 // Creates a new user (with education and work experience data)
-export const serv_createUser = async (user: IUser, education: [IEducation], work: [IWorkExperience]): Promise<IResponse> => {
+export const serv_createUser = async (user: IUser): Promise<IResponse> => {
     try {
         const newUser = await db_newUser(user);
 
-        education.forEach(async educationData => {
-            const newEducation = new Education(educationData)
-            newEducation.userID = newUser._id
-            await newEducation.save()
-        });
+        // education.forEach(async educationData => {
+        //     const newEducation = new Education(educationData)
+        //     newEducation.userID = newUser._id
+        //     await newEducation.save()
+        // });
 
-        work.forEach(async workData => {
-            const newWork = new Work(workData)
-            newWork.userID = newUser._id
-            await newWork.save()
-        });
+        // work.forEach(async workData => {
+        //     const newWork = new Work(workData)
+        //     newWork.userID = newUser._id
+        //     await newWork.save()
+        // });
 
         return { status: 201, msg: USER_CREATED }
     } catch (e) {
