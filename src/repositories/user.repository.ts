@@ -25,6 +25,13 @@ export const db_getUserById = async (id: string): Promise<IUser> => {
     return foundUser;
 };
 
+// Returns one user filtered by email
+export const db_getUserByEmail = async (email: string): Promise<IUser> => {
+    console.log('inside method db_getUserByEmail by mail')
+    const foundUser = await User.find({email: email});
+    return foundUser;
+}
+
 // Updates one user document
 export const db_updateUser = async (newUser: IUser) => {
     const updatedUser = User.findByIdAndUpdate({ _id: newUser._id }, newUser, { new: true });

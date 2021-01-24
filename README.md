@@ -30,3 +30,8 @@ ENDPOINTS:
 
 # /api/course/delete/:id
 
+# /api/users/getUserByEmail
+{
+    "email": "erix12@gmail.com"
+}
+

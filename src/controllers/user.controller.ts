@@ -6,7 +6,7 @@ import { INewUser } from './../interfaces/INewUser.interface';
 
 import { serv_getAllUsersData, serv_getUserData, serv_createUser } from "../services/user.service";
 
-import { db_updateUser, db_deleteUser } from './../repositories/user.repository';
+import { db_updateUser, db_deleteUser, db_getUserByEmail } from './../repositories/user.repository';
 
 
 // GET: Returns all user's data
@@ -31,6 +31,17 @@ export const createNewUser = async (req: Request, res: Response): Promise<Respon
 
     } catch (e) {
         return res.status(400).json({ error: e.message });
+    }
+}
+
+//GET: One user by email
+export const getUserByEmail = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        console.log(req.body.email);
+        const userData = await db_getUserByEmail(req.body.email);
+        return res.status(200).json({result: userData});
+    } catch (e) {
+        return res.status(400).json({error: e.message});
     }
 }
 
